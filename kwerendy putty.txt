@@ -1,0 +1,23 @@
+1.
+
+CREATE TABLE postac (id INTEGER PRIMARY KEY NOT NULL, imie varchar(40), rodzaj enum('wiking', 'ptak','kobieta'), data_ur date, wiek integer unsigned);
+
+insert into postac values (1, "bjorn", "wiking", '2022-10-27', 3000);
+insert into postac values (2, "drozd", "ptak", '2022-10-27', 3);
+insert into postac values (3, "tesciowa", "kobieta", '2022-10-27', 87);
+
+update postac set wiek=88 where imie="tesciowa";
+
+2.
+
+create table walizka (id_walizki integer primary key not null auto_increment, pojemnosc integer unsigned, kolor enum("rozowy","teczowy","zolty"), id_wlasciciela integer, foreign key(id_wlasciciela) references postac(id)  on delete cascade);
+
+
+alter table walizka alter kolor set default "rozowy";
+
+mysql> insert into walizka values(2, 50, "teczowy", 1);
+mysql> insert into walizka values(3, 20, "rozowy", 3);
+
+3. (nie działa jeszcze)
+
+create table izba (adres_budynku integer primary key not null, nazwa_izby integer primary key not null, metraz integer unsigned, wlasciciel integer, forgein key(wlasciciel) references(postac) on delete set null);
