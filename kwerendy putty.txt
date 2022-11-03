@@ -18,6 +18,41 @@ alter table walizka alter kolor set default "rozowy";
 mysql> insert into walizka values(2, 50, "teczowy", 1);
 mysql> insert into walizka values(3, 20, "rozowy", 3);
 
-3. (nie działa jeszcze)
+3. 
 
-create table izba (adres_budynku integer primary key not null, nazwa_izby integer primary key not null, metraz integer unsigned, wlasciciel integer, forgein key(wlasciciel) references(postac) on delete set null);
+create table izba(adres_budynku integer, nazwa_izby varchar(40), metaz integer unsigned, wlasciciel integer, foreign key(wlasciciel) references postac(id) on delete set null, primary key(adres_budynku, nazwa_izby));
+
+alter table izba add kolor_izby varchar(40) default "czarny" after metaz;
+
+
+insert into izba values(1,"spizarnia",25,1);
+
+
+4.
+create table przetwory (id_przetworu integer primary key, rok_produkcji year default (1654), id_wykonawcy integer, foreign key(id_wykonawcy) references postac(id), zawartosc varchar(40), dodatek varchar(40) default "papryczka chilli", id_konsumenta integer, foreign key(id_konsumenta) references postac(id));  
+
+insert into przetwory values(1,null,null,"bigos z paprczka chilli","papryczka chilli",null);  <--- tylko tak działa, gdy pomijam wartość domyślną dostaję column dosent match
+
+
+5.
+insert into postac values(4, "floki","wiking",'2002-11-5',14);
+insert into postac values(5, "ragnar","wiking",'1900-11-5',114);
+insert into postac values(6, "Haraldson","wiking",'1999-11-5',27);
+insert into postac values(7, "Rolo","wiking",'1995-11-5',34);
+insert into postac values(8, "Ivar","wiking",'2024-11-5',11);
+
+ create table statek (nazwa_statku varchar(100) primary key, rodzaj_statku enum("prom","kontenerowiec","jacht","kajak","motorowka","lodka","kosmiczny"), data_wodowania date, max_ladownosc integer unsigned);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
