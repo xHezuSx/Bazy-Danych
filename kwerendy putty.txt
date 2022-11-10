@@ -20,7 +20,7 @@ mysql> insert into walizka values(3, 20, "rozowy", 3);
 
 3. 
 
-create table izba(adres_budynku integer, nazwa_izby varchar(40), metaz integer unsigned, wlasciciel integer, foreign key(wlasciciel) references postac(id) on delete set null, primary key(adres_budynku, nazwa_izby));
+create table izba(adres_budynku integer, nazwa_izby varchar(40), metaz integer unsigned, wlasciciel integer, foreign key(wlasciciel) references postac(id) on delete set null, primary key(adres_budynku, nazwa_izbselecty));
 
 alter table izba add kolor_izby varchar(40) default "czarny" after metaz;
 
@@ -42,6 +42,44 @@ insert into postac values(7, "Rolo","wiking",'1995-11-5',34);
 insert into postac values(8, "Ivar","wiking",'2024-11-5',11);
 
  create table statek (nazwa_statku varchar(100) primary key, rodzaj_statku enum("prom","kontenerowiec","jacht","kajak","motorowka","lodka","kosmiczny"), data_wodowania date, max_ladownosc integer unsigned);
+
+insert into statek values("czarna perla", "jacht", '2022-11-10', 1000);
+insert into statek values("biala perla", "lodka", '2022-11-5', 12000);
+
+alter table postac add funkcja varchar(50);
+
+update postac set funkcja="kapitan" where imie="bjorn";
+
+alter table postac add id_statku varchar(100), add foreign key(id_statku) references statek(nazwa_statku);
+
+
+update postac set id_statku="czarna perla" where rodzaj="wiking" and imie="drozd";
+
+delete from izba where nazwa_izby="spizarnia";
+
+drop table izba;
+
+
+
+
+		LEKCJA 2 
+
+
+
+delete from postac where rodzaj="wiking" and wiek=114 or wiek=34;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
