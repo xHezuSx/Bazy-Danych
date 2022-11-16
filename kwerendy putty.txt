@@ -68,17 +68,17 @@ drop table izba;
 
 delete from postac where rodzaj="wiking" and wiek=114 or wiek=34;
 
+ alter table przetwory drop foreign key przetwory_ibfk_1;
 
+alter table przetwory drop foreign key przetwory_ibfk_2;
 
+alter table walizka drop foreign key walizka_ibfk_1;
 
+alter table postac drop primary key;
 
+alter table postac drop id;
 
-
-
-
-
-
-
+przy każdym używałem 'show create table <nazwa>;
 
 
 
